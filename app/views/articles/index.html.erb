@@ -1,0 +1,14 @@
+<h1>Welcome Moomin Blog</h1>
+<h2>All Articles</h2>
+
+<div class="articles">
+  <% if @articles.any? %>
+    <% @articles.each do |article| %>
+    <article class="articles__item">
+      <h3 class="articles__title"><%= link_to  article.title, article_path(article) %></h3>
+    </article>
+    <% end %>
+  <% end %>
+</div>
+
+ <%= link_to "Create new article", new_article_path, class: 'btn' %>

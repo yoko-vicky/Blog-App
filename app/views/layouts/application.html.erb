@@ -10,6 +10,9 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: "layouts/messages" %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

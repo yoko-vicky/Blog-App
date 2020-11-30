@@ -1,0 +1,16 @@
+<%= render partial: "errors" %>
+<%= form_for(@article, html: {class: 'form'}) do |f| %>
+  <div class="form__item">
+    <%= f.label :title, { class: 'form__label' } %>
+    <%= f.text_field :title,{ class:'form__field' } %>
+  </div>
+
+  <div class="form__item">
+    <%= f.label :body, { class: 'form__label' } %>
+    <%= f.text_area :body,{ class:'form__field' } %>
+  </div>
+
+  <div class="form__item">
+    <%= f.submit class: "btn" %>
+  </div>
+<% end %>
