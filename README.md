@@ -4,7 +4,7 @@
 
 ## About the Project
 
-This project is based on the [Odin Project Blog App](https://www.theodinproject.com/courses/ruby-on-rails/lessons/ruby-on-rails-ruby-on-rails). In this project, we create a blog application with Ruby on Rails follwing the [Jumpstart Lab’s Blogger Tutorial](http://tutorials.jumpstartlab.com/projects/blogger.html).
+This project is based on the [Odin Project Blog App](https://www.theodinproject.com/courses/ruby-on-rails/lessons/ruby-on-rails-ruby-on-rails). In this project, we create a blog application with Ruby on Rails following the [Jumpstart Lab’s Blogger Tutorial](http://tutorials.jumpstartlab.com/projects/blogger.html).
 
 In this project we learned the basics of Ruby on Rails including below:
 
