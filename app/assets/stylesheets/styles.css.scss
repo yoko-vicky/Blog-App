@@ -1,0 +1,133 @@
+$primary-color: #7e6985;
+$black: black;
+$white: white;
+
+body {
+  background: url('https://source.unsplash.com/NvesrDbsrL4') no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family:
+    'verdana',
+    'helvetica',
+    'arial',
+    sans-serif;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+}
+
+.header {
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba($primary-color, 0.8);
+  color: $white;
+  padding: 1rem 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba($black, 0.1);
+}
+
+.container {
+  width: 96%;
+  max-width: 768px;
+  margin: 2rem auto 6rem;
+  background-color: rgba($white, 0.5);
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba($black, 0.1);
+  padding: 3rem 2rem 4rem 2rem;
+}
+
+h1 {
+  text-align: center;
+}
+
+.upcase {
+  text-transform: uppercase;
+}
+
+.btns {
+  margin: 0 auto 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  background-color: $black;
+  color: $white;
+  padding: 0.8rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.4s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $white;
+    color: $black;
+  }
+}
+
+.form {
+  width: 30rem;
+  margin: 0 auto;
+
+  &__item {
+    margin-bottom: 1rem;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  &__field {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    padding: 1rem;
+    border: none;
+    border-radius: 3px;
+  }
+}
+
+.articles {
+  text-align: left;
+  margin: 0 auto 2rem;
+
+  &__item {
+    display: block;
+
+    &:not(:last-child) {
+      border-bottom: 2px solid rgba($black, 0.1);
+    }
+  }
+
+  &__title {
+    a {
+      color: $black;
+      font-size: 1.3rem;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.flash {
+  width: 96%;
+  max-width: 60rem;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  background-color: rgba($white, 0.5);
+  color: $primary-color;
+  border-radius: 3px;
+  border: 3px solid $primary-color;
+}

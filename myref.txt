@@ -1,0 +1,328 @@
+==============================================================
+Packages
+==============================================================
+- After installing rails, you can add scripts and some packages on _package.json file into your package.json file
+- If you want to install packages on the package.json file, you should run "yarn install" or "npm install" * You can use an option, "--without production"
+
+* Other operation of yarn and npm, you can check here:
+https://www.digitalocean.com/community/tutorials/nodejs-npm-yarn-cheatsheet
+https://shift.infinite.red/npm-vs-yarn-cheat-sheet-8755b092e5cc
+
+● Style Linter
+https://stylelint.io/user-guide/usage/options
+To correct automatically, run with option '--fix'.
+Run:  npx stylelint "**/*.{css,scss}"
+==============================================================
+Gems
+==============================================================
+- If you want to install gems on Gemfile, you should run "bundle install"
+- If you want to create default Gemfile, you can say "bundle init"
+
+● Gem for Rubocop
+- Add "gem 'rubocop', '~>0.81.0'" to Gemfile, and then Run bundle install.
+- To check rubocop error, run 'rubocop' or 'rubocop --color'
+- To run rubocop auto correct, you can say "rubocop -a"
+  https://docs.rubocop.org/rubocop/usage/auto_correct.html
+- Disable Rubocop in some particular files or parts in a file, you can add like below:
+
+  # rubocop:disable all
+  ... code
+  # rubocop:eable all
+
+● Gem for Rspec
+- To install rspec, run "gem install rspec", and then "rspec --init" to set initial files
+- To make defalut result to be readable, add "--format documentation" to .rspec file after bundle install
+
+● Gems for pry and pry-byebug
+- To install two gems, you can add 2 lines below on Gemfile, then run "bundle install"
+
+gem 'pry', '~> 0.13.1'
+gem 'pry-byebug'
+
+● Gem for Nomalize.css
+https://github.com/markmcconachie/normalize-rails
+
+1. gem 'normalize-rails'
+2. bundle
+3. Add below in your application.css
+
+*= require normalize-rails
+*= require_self
+*= require_tree .
+
+4. Restart server
+
+==============================================================
+Heroku
+How to deploy
+==============================================================
+REF: https://devcenter.heroku.com/articles/getting-started-with-rails6
+After installing Heroku CLI, you should prepare for deployment as following and deploy it:
+1. Modify Gemfile like below:
+
+  (1) Cut "gem 'sqlite3', '~> X.X'" out and paste it inside "group :development, :test do"
+  (2) To add pg gem, add new group for production like below:
+    group :production do
+      gem 'pg'
+    end
+
+2. bundle install --without production
+3. git add -A => git commit -m "comment" => git push origin master
+4. heroku login => Login Heroku
+5. heroku create => Create App
+6. git push heroku master
+* If you want to push other branch, you can push by adding ':master' after branch name:
+eg. git push heroku develop:master
+
+7. heroku run rails db:migrate => Every after pushing to Heroku, you should run this code
+8. heroku open
+
+* How to change your Heroku app name?
+heroku rename new-name　eg.heroku rename alpha-blog-6
+
+==============================================================
+HIRB
+Makes console list readable.
+==============================================================
+
+1. Add gem to your Gemfile:　gem 'hirb'
+2. "bundle install"
+3. "rails c"
+4. "Hirb.enable"
+5. Test it!: eg."User.all"
+
+==============================================================
+Terminal Commands For Rails
+==============================================================
+- rails routs --expanded => --expanded option shows readable routes list
+- rails routes --expanded | grep comment => grep option shows relative routes to 'comment'
+- rails new => Create a new rails app and folder including all the necessary files
+- rails s / rails server  => Start server
+- rails s -p 3200  => Start server in a different port
+- Control + C => Stop server
+- rails c / rails console => Start irb console (To stop it, run "exit")
+- rails s -d => Start server in background
+* How to stop background server
+1. "cat tmp/pids/server.pid"　
+2. step1 returns a number, and copy it
+3. "kill -9 <number>"　eg. kill -9 17532
+
+==============================================================
+DATABASE
+How to check
+==============================================================
+- rails db　=> Start connecting database and start sqlite
+- .tables => Display all the table as a list
+-　select * from <table-name>;　=> Display the content of the table　
+eg. select * from posts;
+-　.quit　=> End conneting database
+
+==============================================================
+How to set credentials
+config/credentials.yml.enc
+==============================================================
+By following below, we can keep our confidential information safe.
+
+==============================================================
+How to run CRUD from console
+==============================================================
+rails c  => Start irb
+
+-----------------------------
+Display all the data(model on table)
+-----------------------------
+Article.all => 'Article' is a model class name
+
+-----------------------------
+Create data
+-----------------------------
+1 Article.create(title: "First article", body: "this is a description")
+2 article = Article.new
+  article.title = "First article"
+  article.body = "description"
+  article.save
+3 article = Article.new(title: "First article", body: "this is a description")
+  article.save
+
+-----------------------------
+Pickup data
+-----------------------------
+Article.find(2) => return article data with ID '2'
+Article.first => return first article data
+Article.last => return last article data
+
+-----------------------------
+Pickup and use the data
+-----------------------------
+article = Article.find(3)
+article.title => returns article title of Article ID 3
+article.body => returns article body of Article ID 3
+articles = Article.all
+
+
+* Underscore
+_ means the last input on console
+
+eg.
+Article.find(2)
+article = _
+
+Above means the same like:
+article = Article.find(2)
+
+-----------------------------
+Update the data
+-----------------------------
+article = Article.find(3)
+article.title = "New title" => set a new article title to Article ID 3
+article.body = "New description" => set a new article body to Article ID 3
+article.save
+
+-----------------------------
+Delete the data
+-----------------------------
+article = Article.last
+article.destroy
+
+* Delete ALL the data
+articles = Article.all
+articles.destroy_all
+
+-----------------------------
+Useful console command
+-----------------------------
+- reload! => reload the console and data
+- target.errors　=> display the errors for the target
+- target.errors.full_messages　=> display the errors in full messages for the target
+  eg. article = Article.new(title: "", body: "")
+      article.save　=> false
+      article.errors.full_messages　=> ["Title can't be blank"]
+
+==============================================================
+How to add validation to Model
+==============================================================
+- add the validates to models/article.rb file like below:
+validates :title, presence: true, length: { minimum: 6, maximum: 100 }
+
+validates :title => set the validation for title column
+presence: true => it's required
+length: { minimum: 6, maximum: 100 } => set the minimum and maximum length
+
+- Then, make sure on console if it's working or not
+
+
+==============================================================
+How to add new route for resources
+==============================================================
+- Go to config/routes.rb file, and add like this:
+  resources :articles
+
+- Then run this and check if it's created correctly
+  rails routes --expanded
+
+- if you want to create resources on only "show" and "index", you can write like this:
+  resources :articles, only: [:show, :index]
+
+==============================================================
+How to add controller
+==============================================================
+- Go to app/controllers, then create articles_controller.rb
+  class ArticlesController < ApplicationController
+  end
+
+- Then add action method inside it
+  def show
+  ...
+  end
+==============================================================
+How to use bybug
+==============================================================
+1. Inside method (eg. update, create) where you want to check if it's working, add 'byebug'
+2. Run the local server and reload the page with the method on your browser
+3. Then go to the terminal where you are running the server
+4. Input params
+5. Input params[:id] if you want to check if returns a correct value of id
+6. After making sure, input 'continue' to quit the byebug and continue running the server
+7. Remember, before committing the code, make sure it's removed correctly
+
+==============================================================
+Useful command inside methods
+==============================================================
+- Render content as a plain object on the web browser
+render plain: @article
+
+- To show the contents of the object, you can use .inspect method
+render plain: @article.inspect
+
+
+==============================================================
+How to check PATH and write it on method
+==============================================================
+
+1. rails routes --expanded => check the routes and "Prefix"
+eg.
+--[ Route 2 ]
+Prefix            | articles
+Verb              | GET
+URI               | /articles(.:format)
+Controller#Action | articles#index
+
+2. Write path by adding "_path" to Prefix
+eg. in method: redirect_to articles_path
+eg. in view: <%= link_to  "Delete", article_path(article), method: :delete %>
+  * In this case, destroy doesn't have Prefix, but to provide unique ID to destroy a particular article, we pass the article_path with article id
+
+==============================================================
+How to reset/rollback database
+==============================================================
+When you have problems about db,
+you can rollback or reset database
+
+--------------------------------------
+Rollback the database migration
+--------------------------------------
+rails db:rollback
+
+--------------------------------------
+Reset the database and rebuild it
+--------------------------------------
+rails db:migrate:reset
+rails db:migrate
+
+--------------------------------------
+Remove column from database
+--------------------------------------
+1. rails g migration remove_height_from_humans
+2. Add below line to migration file
+def change
+    remove_column(table_name, column_name, type = nil, options = {})
+end
+
+eg:
+def change
+  remove_column :humans, :height, :integer
+end
+
+3. rails db:migrate
+
+--------------------------------------
+Remove(drop) table from database
+--------------------------------------
+1. rails g migration drop_table_from_users
+2. Add below line to migration file
+
+* If rollback is needed after dropping table, it creates the same table
+  def change
+    drop_table :users do |t|
+          t.string :email, null: false
+          t.timestamps null: false
+    end
+  end
+
+* If you don't need to consider the time if you need to rollback, you can just say like this
+
+  def change
+      drop_table :users
+  end
+
+3. rails db:migrate
