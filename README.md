@@ -98,3 +98,6 @@ This project is [MIT](./LICENSE) licensed.
 - [Jumpstart Lab’s Blogger Tutorial](http://tutorials.jumpstartlab.com/projects/blogger.html)
 - [Rails Guides](https://guides.rubyonrails.org/)
 - [Unsplash](https://unsplash.com/)
+- [Paperclip](https://github.com/thoughtbot/paperclip)
+- [normalize-rails](https://github.com/markmcconachie/normalize-rails)
+- [sorcery](https://github.com/Sorcery/sorcery)

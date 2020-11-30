@@ -28,6 +28,20 @@ img {
   letter-spacing: 1px;
   font-weight: bold;
   box-shadow: 0 0 10px rgba($black, 0.1);
+
+  nav {
+    ul {
+      list-style-type: none;
+
+      li {
+        display: inline-block;
+
+        &:not(:last-child) {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
 }
 
 .container {
@@ -52,7 +66,9 @@ h1 {
   margin: 0 auto 1.5rem;
 }
 
-.btn {
+.btn,
+button,
+input[type='submit'] {
   display: inline-block;
   text-align: center;
   text-decoration: none;
@@ -64,6 +80,7 @@ h1 {
   letter-spacing: 0.5px;
   transition: all 0.4s;
   cursor: pointer;
+  margin: 1rem auto;
 
   &:hover {
     background-color: $white;
@@ -71,22 +88,28 @@ h1 {
   }
 }
 
+form,
 .form {
   width: 30rem;
   margin: 0 auto;
 
-  &__item {
+  &__item,
+  .field {
     margin-bottom: 1rem;
   }
 
-  &__label {
+  &__label,
+  label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: bold;
     text-transform: uppercase;
   }
 
-  &__field {
+  &__field,
+  input[type='text'],
+  input[type='password'],
+  textarea {
     display: block;
     width: 90%;
     margin: 0 auto;
@@ -130,4 +153,8 @@ h1 {
   color: $primary-color;
   border-radius: 3px;
   border: 3px solid $primary-color;
+}
+
+.login-box {
+  margin-top: 3rem;
 }
