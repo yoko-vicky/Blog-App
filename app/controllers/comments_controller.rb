@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment.save
 
     redirect_to article_path(@comment.article)
-    end
+  end
 
   def comment_params
     params.require(:comment).permit(:author_name, :body)

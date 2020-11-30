@@ -9,7 +9,7 @@
 <div class="tags">
   Tags:
   <% @article.tags.each do |tag| %>
-    <%= link_to tag.name, tag_path(tag) %>
+    <%= link_to tag.name, tag_path(tag), class: 'tags__item' %>
   <% end %>
 </div>
 
