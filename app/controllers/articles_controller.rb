@@ -37,6 +37,8 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    @article.taggings.destroy_all
+    @article.image.destroy
     @article.destroy
     flash[:notice] = "Successfully #{@article.title} is deleted..."
     redirect_to articles_path
