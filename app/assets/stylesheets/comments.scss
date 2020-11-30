@@ -1,0 +1,27 @@
+$primary-color: #7e6985;
+$black: black;
+$white: white;
+
+.comments {
+  &__comments {
+    width: 80%;
+    margin: 0 auto 2rem;
+    padding: 1rem;
+    background-color: rgba($primary-color, 0.2);
+  }
+
+  &__post {
+    border-style: solid;
+    border-color: rgba($black, 0.1);
+    border-width: 3px;
+    width: 80%;
+    margin: 0 auto 3rem;
+    padding: 1rem;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba($white, 0.8);
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<h1>Welcome To The Blog App</h1>
+<h2>All Articles</h2>
+
+<div class="articles">
+  <% if @articles.any? %>
+    <% @articles.each do |article| %>
+    <article class="articles__item">
+      <h3 class="articles__title"><%= link_to  article.title, article_path(article) %></h3>
+    </article>
+    <% end %>
+  <% end %>
+</div>
+
+<% if logged_in? %>
+ <%= link_to "Create new article", new_article_path, class: 'btn' %>
+<% else %>
+  <%= link_to  "Login", login_path, class:'btn' %>
+  <%= link_to  "Create an account", new_author_path, class:'btn' %>
+<% end %>
