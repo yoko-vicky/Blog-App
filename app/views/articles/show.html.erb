@@ -1,17 +1,21 @@
 <h1><%= @article.title %></h1>
 <p><%= @article.body %></p>
+
+<% if @article.tags.exists? %>
+<div class="tags">
+  Tags:
+  <% @article.tags.each do |tag| %>
+    <%= link_to tag.name, tag_path(tag) %>
+  <% end %>
+</div>
+
+<% end %>
 <h3>Comments (<%= @article.comments.size %>)</h3>
-
-
 <%= render partial: 'articles/comment', collection: @article.comments %>
 <%= render partial: 'comments/form' %>
 
 <div class="btns">
   <%= link_to "Edit", edit_article_path(@article), class:'btn' %>
   <%= link_to "Delete", article_path(@article), method: :delete, data: { confirm: 'Are you sure?' }, class:'btn' %>
-  
   <%= link_to  "Back to articles listing", articles_path, class:'btn' %>
-
 </div>
-
-
