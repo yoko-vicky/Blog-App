@@ -1,5 +1,5 @@
 <%= render partial: "errors" %>
-<%= form_for(@article, html: {class: 'form'}) do |f| %>
+<%= form_for(@article, html: {multipart: true}) do |f| %>
   <div class="form__item">
     <%= f.label :title, { class: 'form__label' } %>
     <%= f.text_field :title,{ class:'form__field' } %>
@@ -16,7 +16,13 @@
   <%= f.text_field :tag_list %>
 </p>
   </div>
-
+<p>
+  <% if @article.image.exists? %>
+      <%= image_tag @article.image.url(:thumb) %><br/>
+  <% end %>
+  <%= f.label :image, "Attach a New Image" %><br />
+  <%= f.file_field :image %>
+</p>
   <div class="form__item">
     <%= f.submit class: "btn" %>
   </div>
