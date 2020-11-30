@@ -1,3 +1,4 @@
+<% if logged_in? %>
 <h1><%= @article.title %></h1>
 <%if @article.image.exists?%>
 <p><%= image_tag @article.image.url(:medium) %></p>
@@ -23,3 +24,8 @@
   <%= link_to "Delete", article_path(@article), method: :delete, data: { confirm: 'Are you sure?' }, class:'btn' %>
   <%= link_to  "Back to articles listing", articles_path, class:'btn' %>
 </div>
+<% else %>
+  <p>To see this article, you need to login as a new author</p>
+  <%= link_to  "Login", login_path, class: 'btn' %>
+  <%= link_to  "Create an account", new_author_path, class: 'btn' %>
+<% end %>

@@ -10,9 +10,19 @@
   </head>
 
   <body>
+    <%= render partial: "layouts/header" %>
     <%= render partial: "layouts/messages" %>
     <div class="container">
       <%= yield %>
+      <hr>
+      <h6>
+        <% if logged_in? %>
+          <%= "Logged in as #{current_user.email}" %>
+          <%= link_to "(logout)", logout_path %>
+        <% else %>
+          <%= link_to "(login)", login_path %>
+        <% end %>
+      </h6>
     </div>
   </body>
 </html>
